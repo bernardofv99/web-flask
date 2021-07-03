@@ -1,0 +1,72 @@
+{% extends 'layout.html' %}
+
+{% block body %}
+      <h1>Index PRODUCTO</h1>
+
+      <section class="container">
+          <div class="box box-primary">
+              <div class="box-header">
+                  <a href="/producto/add/"> 
+                    <center>
+                        <button type="button" class="btn btn-primary">
+                            <span class="glyphicon glyphicon-plus"></span> Nuevo producto
+                        </button>
+                    </center>
+                    </a>
+              </div>
+
+              <div class="box-body">
+                <table id="dataphone" class="table table-bordered table-striped">
+                    <thead align="center">
+                       <tr>
+                           <th>Codigo</th>
+                           <th>Descripción</th>
+                           <th>Precio</th>
+                           <th>Stock</th>
+                           <th>Categoría</th>
+                       </tr> 
+                    </thead>
+
+                    <tbody>
+                        {% if data|length == 0 %}
+                        <tr>
+                            <td>Sin Datos</td>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                        </tr>   
+                        {% else %}
+                            {% for row in data %}
+                            <tr>
+                                <th>{{ row[1] }}</th>
+                                <th>{{ row[2] }}</th>
+                                <th>{{ row[3] }}</th>
+                                <th>{{ row[4] }}</th>
+                                <th>{{ row[5] }}</th>
+                                <th align="center">
+                                    <a href="/producto/update/{{ row[0] }}">
+                                            <button type="button" class="btn btn-sm btn-warning btn-flat" title="Update">
+                                                <span class="glyphicon glyphicon-pencil"></span>
+                                            </button>
+                                    </a>
+                                    <a href="/producto/delete/{{ row[0] }}">
+                                        <button type="button" class="btn btn-sm btn-warning btn-flat" title="Delete">
+                                            <span class="glyphicon glyphicon-remove"></span>
+                                        </button>
+                                    </a>
+                                </th>
+                            </tr>
+                            {% endfor %}
+                        {% endif %}
+                    </tbody>
+
+                </table>
+
+
+              </div>
+
+
+          </div>
+
+      </section>
+{% endblock %}
